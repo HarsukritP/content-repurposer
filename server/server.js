@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path');
 const transformRoutes = require('./routes/transform');
 
 const app = express();
@@ -43,11 +42,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static files from React build in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
-
 // Debug middleware to log environment
 app.use((req, res, next) => {
   if (req.path.includes('/api/')) {
@@ -71,13 +65,6 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
-
-// Serve React app for all other routes in production
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
-}
 
 // Enhanced error handler - Shows actual error details for debugging
 app.use((err, req, res, next) => {
@@ -104,11 +91,15 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler - Fixed route pattern
+// 404 handler - Only for API endpoints
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    error: 'Endpoint not found'
+    error: `API endpoint not found: ${req.method} ${req.path}`,
+    availableEndpoints: [
+      'GET /health',
+      'POST /api/transform'
+    ]
   });
 });
 
