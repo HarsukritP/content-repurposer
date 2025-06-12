@@ -25,7 +25,7 @@ class ContentProcessor {
       console.warn('⚠️ GEMINI_API_KEY not found in environment variables');
     }
     this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    this.model = this.genAI.getGenerativeModel({ model: "gemini-pro" });
+    this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   }
 
   // Main transformation method using Gemini AI
