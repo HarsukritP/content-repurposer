@@ -1,5 +1,37 @@
 {
-  "dependencies": {
-    "axios": "^1.9.0"
+  "name": "content-repurposer",
+  "version": "1.0.0",
+  "description": "AI-powered Content Repurposing Tool - Transform content for Twitter, LinkedIn, and Instagram",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "cd server && NODE_ENV=production npm start",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "build": "cd client && npm run build",
+    "build-and-start": "npm run install-all && npm run build && npm start",
+    "railway-build": "npm run install-all && npm run build",
+    "railway-start": "cd server && NODE_ENV=production npm start"
+  },
+  "keywords": [
+    "content",
+    "repurposing",
+    "ai",
+    "social-media",
+    "twitter",
+    "linkedin",
+    "instagram",
+    "gemini",
+    "mern"
+  ],
+  "author": "HarsukritP",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
   }
 }
