@@ -83,9 +83,24 @@ project-3/
    ```
 
 2. **Set up environment variables**
-   Create a `.env` file in the **root directory** with:
+   
+   **Server Environment** - Create `server/.env`:
+   ```bash
+   cd server
+   cp .env.example .env
+   # Edit server/.env and add your API key:
+   # GEMINI_API_KEY=your_gemini_api_key_here
+   # PORT=3001
+   # NODE_ENV=development
    ```
-   GEMINI_API_KEY=your_gemini_api_key_here
+   
+   **Client Environment** - Create `client/.env`:
+   ```bash
+   cd ../client
+   cp .env.example .env
+   # Edit client/.env for API URL (default should work for local development):
+   # REACT_APP_API_URL=http://localhost:3001
+   # REACT_APP_API_BASE_URL=http://localhost:3001/api
    ```
 
 3. **Install backend dependencies**
@@ -241,21 +256,39 @@ The application uses Google's Gemini Pro model to intelligently transform conten
 ## 🔧 Configuration
 
 ### Environment Variables
-Create a `.env` file in the **root directory**:
-```
+
+The application uses separate environment files for frontend and backend:
+
+**Server Environment (`server/.env`):**
+```bash
 GEMINI_API_KEY=your_gemini_api_key_here
+PORT=3001
+NODE_ENV=development
+```
+
+**Client Environment (`client/.env`):**
+```bash
+REACT_APP_API_URL=http://localhost:3001
+REACT_APP_API_BASE_URL=http://localhost:3001/api
 ```
 
 ### Getting a Gemini API Key
 1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Sign in with your Google account
 3. Create a new API key
-4. Copy the key and add it to your `.env` file
+4. Copy the key and add it to your `server/.env` file
 
 ### Server Configuration
-The server runs on port 3001 by default. You can change this by setting the `PORT` environment variable:
+The server runs on port 3001 by default. You can change this by setting the `PORT` environment variable in `server/.env`:
 ```bash
-PORT=8000 npm start
+PORT=8000
+```
+
+### Client Configuration
+For production deployment, update the client environment variables to point to your deployed API:
+```bash
+REACT_APP_API_URL=https://your-api-domain.com
+REACT_APP_API_BASE_URL=https://your-api-domain.com/api
 ```
 
 ## 📱 Responsive Design
@@ -268,19 +301,43 @@ The application is fully responsive and works on:
 ## 🚀 Deployment
 
 ### Environment Variables for Production
-Make sure to set the following environment variables in your production environment:
+
+**Server Environment Variables:**
 - `GEMINI_API_KEY` - Your Google Gemini API key
 - `PORT` - Server port (optional, defaults to 3001)
+- `NODE_ENV` - Set to `production`
+
+**Client Environment Variables:**
+- `REACT_APP_API_URL` - Your deployed API base URL
+- `REACT_APP_API_BASE_URL` - Your deployed API endpoints URL
 
 ### Frontend (Netlify/Vercel)
 1. Build the React app: `npm run build`
 2. Deploy the `build` folder to your hosting service
-3. Set environment variable: `REACT_APP_API_URL=your-api-url`
+3. Set environment variables:
+   ```
+   REACT_APP_API_URL=https://your-api-domain.com
+   REACT_APP_API_BASE_URL=https://your-api-domain.com/api
+   ```
 
 ### Backend (Heroku/Railway)
 1. Deploy the `server` folder
-2. Set environment variables: `GEMINI_API_KEY` and `PORT`
+2. Set environment variables:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key_here
+   NODE_ENV=production
+   PORT=3001
+   ```
 3. Ensure all dependencies are in `package.json`
+
+### Full-Stack Railway Deployment
+For deploying both frontend and backend together on Railway:
+1. Set environment variables:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key_here
+   NODE_ENV=production
+   ```
+2. Railway will automatically build and deploy both client and server
 
 ## 🤝 Contributing
 

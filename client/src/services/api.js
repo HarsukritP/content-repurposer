@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+// Use environment variables for API configuration
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_ENDPOINTS_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api';
 
 class ApiService {
   constructor() {
     this.api = axios.create({
-      baseURL: API_BASE_URL,
+      baseURL: API_ENDPOINTS_BASE,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +62,7 @@ class ApiService {
   // Health check
   async healthCheck() {
     try {
-      const response = await axios.get(`${API_BASE_URL.replace('/api', '')}/health`);
+      const response = await axios.get(`${API_BASE_URL}/health`);
       return response.data;
     } catch (error) {
       throw this.handleError(error);
