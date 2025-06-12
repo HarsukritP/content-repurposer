@@ -8,10 +8,40 @@ const transformRoutes = require('./routes/transform');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json({ limit: '10mb' }));
+// Middleware - Allow all origins for debugging
+app.use(cors({
+  origin: '*',
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With']
+}));
+
+// Enhanced body parser with error handling
+app.use((req, res, next) => {
+  if (req.method === 'POST' && req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
+    console.log(`📦 POST Request Body Size: ${req.headers['content-length']} bytes`);
+  }
+  next();
+});
+
+app.use(bodyParser.json({ 
+  limit: '10mb',
+  verify: (req, res, buf, encoding) => {
+    req.rawBody = buf;
+  }
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`📝 ${new Date().toISOString()} - ${req.method} ${req.path}`);
+  if (req.method === 'POST') {
+    console.log(`📦 Body keys: ${Object.keys(req.body || {}).join(', ')}`);
+    console.log(`📦 Content-Type: ${req.headers['content-type']}`);
+  }
+  next();
+});
 
 // Serve static files from React build in production
 if (process.env.NODE_ENV === 'production') {
@@ -56,7 +86,9 @@ app.use((err, req, res, next) => {
     stack: err.stack,
     url: req.url,
     method: req.method,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    body: req.body,
+    headers: req.headers
   });
   
   res.status(500).json({
