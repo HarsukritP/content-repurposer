@@ -79,24 +79,24 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Error handling middleware - Enhanced for debugging
-app.use((err, req, res, next) => {
-  console.error('❌ Global Error Handler:', {
-    message: err.message,
-    stack: err.stack,
-    url: req.url,
-    method: req.method,
-    timestamp: new Date().toISOString(),
-    body: req.body,
-    headers: req.headers
-  });
-  
-  res.status(500).json({
-    success: false,
-    error: 'Something went wrong! Please try again.',
-    ...(process.env.NODE_ENV === 'development' && { details: err.message })
-  });
-});
+// TEMPORARILY DISABLED - Global error handler that was hiding real errors
+// app.use((err, req, res, next) => {
+//   console.error('❌ Global Error Handler:', {
+//     message: err.message,
+//     stack: err.stack,
+//     url: req.url,
+//     method: req.method,
+//     timestamp: new Date().toISOString(),
+//     body: req.body,
+//     headers: req.headers
+//   });
+//   
+//   res.status(500).json({
+//     success: false,
+//     error: 'Something went wrong! Please try again.',
+//     ...(process.env.NODE_ENV === 'development' && { details: err.message })
+//   });
+// });
 
 // 404 handler - Fixed route pattern
 app.use((req, res) => {
