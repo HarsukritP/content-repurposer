@@ -102,7 +102,6 @@ logs
 *.log
 
 # Package lock files (optional - you might want to include these)
-package-lock.json
 yarn.lock .env
 server/.env
 client/.env
