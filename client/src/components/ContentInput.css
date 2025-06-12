@@ -1,0 +1,145 @@
+.content-input-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e2e8f0;
+}
+
+.content-input-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.content-input-header h2 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.content-input-header p {
+  color: #718096;
+  font-size: 1rem;
+}
+
+.content-input-wrapper {
+  position: relative;
+}
+
+.content-input {
+  width: 100%;
+  min-height: 200px;
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  transition: all 0.2s ease;
+  background-color: #fafafa;
+}
+
+.content-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background-color: white;
+}
+
+.content-input.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.content-input::placeholder {
+  color: #a0aec0;
+  line-height: 1.6;
+}
+
+.content-input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.character-count {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.character-count span {
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.character-count span.error {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: #e53e3e;
+  font-weight: 400;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #667eea;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.loading-indicator .loading-spinner {
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .content-input-container {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-input-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .content-input-header p {
+    font-size: 0.9rem;
+  }
+  
+  .content-input {
+    min-height: 150px;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .content-input-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-input-container {
+    padding: 1rem;
+  }
+  
+  .content-input {
+    min-height: 120px;
+    padding: 0.75rem;
+  }
+} 

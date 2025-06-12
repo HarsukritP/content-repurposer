@@ -1,0 +1,265 @@
+.platform-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  height: fit-content;
+}
+
+.platform-card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Platform-specific colors */
+.platform-card.twitter {
+  border-top: 4px solid #1da1f2;
+}
+
+.platform-card.linkedin {
+  border-top: 4px solid #0077b5;
+}
+
+.platform-card.instagram {
+  border-top: 4px solid #e4405f;
+}
+
+.platform-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  border-bottom: 1px solid #f7fafc;
+}
+
+.platform-icon {
+  font-size: 1.5rem;
+}
+
+.platform-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.platform-body {
+  padding: 1rem 1.5rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.platform-content {
+  width: 100%;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4a5568;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.platform-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #667eea;
+  font-weight: 500;
+  width: 100%;
+}
+
+.platform-loading .loading-spinner {
+  font-size: 1.2rem;
+}
+
+.platform-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e53e3e;
+  font-weight: 500;
+  width: 100%;
+}
+
+.platform-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  font-style: italic;
+  width: 100%;
+}
+
+.platform-footer {
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  border-top: 1px solid #f7fafc;
+  background-color: #fafafa;
+}
+
+.character-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.character-count {
+  font-weight: 600;
+}
+
+.character-count.under {
+  color: #38a169;
+}
+
+.character-count.near {
+  color: #d69e2e;
+}
+
+.character-count.over {
+  color: #e53e3e;
+}
+
+.status-icon {
+  font-size: 1rem;
+}
+
+.status-text {
+  color: #718096;
+  font-size: 0.8rem;
+}
+
+.copy-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.copy-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.copy-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.copy-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.copy-button.copied {
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+}
+
+.copy-error {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fed7d7;
+  color: #c53030;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Platform-specific button colors */
+.platform-card.twitter .copy-button {
+  background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+}
+
+.platform-card.linkedin .copy-button {
+  background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+}
+
+.platform-card.instagram .copy-button {
+  background: linear-gradient(135deg, #e4405f 0%, #c13584 100%);
+}
+
+.platform-card.twitter .copy-button:hover:not(:disabled) {
+  box-shadow: 0 4px 8px rgba(29, 161, 242, 0.3);
+}
+
+.platform-card.linkedin .copy-button:hover:not(:disabled) {
+  box-shadow: 0 4px 8px rgba(0, 119, 181, 0.3);
+}
+
+.platform-card.instagram .copy-button:hover:not(:disabled) {
+  box-shadow: 0 4px 8px rgba(228, 64, 95, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .platform-card {
+    margin-bottom: 1rem;
+  }
+  
+  .platform-header {
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+  
+  .platform-icon {
+    font-size: 1.3rem;
+  }
+  
+  .platform-name {
+    font-size: 1rem;
+  }
+  
+  .platform-body {
+    padding: 0.75rem 1rem;
+    min-height: 100px;
+  }
+  
+  .platform-content {
+    font-size: 0.9rem;
+  }
+  
+  .platform-footer {
+    padding: 0.75rem 1rem 1rem 1rem;
+  }
+  
+  .copy-button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .platform-header {
+    padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+  }
+  
+  .platform-body {
+    padding: 0.5rem 0.75rem;
+    min-height: 80px;
+  }
+  
+  .platform-footer {
+    padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+  }
+  
+  .character-info {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .copy-button {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+  }
+} 
